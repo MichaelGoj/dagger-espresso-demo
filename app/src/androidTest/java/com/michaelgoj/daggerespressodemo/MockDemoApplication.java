@@ -4,11 +4,11 @@ import com.michaelgoj.daggerespressodemo.dagger.AndroidModule;
 import com.michaelgoj.daggerespressodemo.dagger.DaggerMockTestComponent;
 import com.michaelgoj.daggerespressodemo.dagger.MockTestComponent;
 import com.michaelgoj.daggerespressodemo.profile.ProfileActivity;
-import com.michaelgoj.daggerespressodemo.profile.dagger.MockTestProfileComponent;
 import com.michaelgoj.daggerespressodemo.profile.dagger.MockTestProfileModule;
+import com.michaelgoj.daggerespressodemo.profile.dagger.ProfileInjector;
 import com.michaelgoj.daggerespressodemo.settings.SettingsActivity;
-import com.michaelgoj.daggerespressodemo.settings.dagger.MockTestSettingsComponent;
 import com.michaelgoj.daggerespressodemo.settings.dagger.MockTestSettingsModule;
+import com.michaelgoj.daggerespressodemo.settings.dagger.SettingsInjector;
 
 public class MockDemoApplication extends DemoApplication {
 
@@ -20,14 +20,12 @@ public class MockDemoApplication extends DemoApplication {
     }
 
     @Override
-    public void buildProfileSubcomponent(ProfileActivity profileActivity) {
-        MockTestProfileComponent component = mockTestComponent.plus(new MockTestProfileModule(profileActivity));
-        component.inject(profileActivity);
+    public ProfileInjector buildProfileSubcomponent(ProfileActivity profileActivity) {
+        return mockTestComponent.plus(new MockTestProfileModule(profileActivity));
     }
 
     @Override
-    public void buildSettingsSubcomponent(SettingsActivity settingsActivity) {
-        MockTestSettingsComponent component = mockTestComponent.plus(new MockTestSettingsModule(settingsActivity));
-        component.inject(settingsActivity);
+    public SettingsInjector buildSettingsSubcomponent(SettingsActivity settingsActivity) {
+        return mockTestComponent.plus(new MockTestSettingsModule(settingsActivity));
     }
 }
