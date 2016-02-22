@@ -20,13 +20,13 @@ public class MockDemoApplication extends DemoApplication {
     }
 
     @Override
-    public void buildProfileComponent(ProfileActivity profileActivity) {
+    public void buildProfileSubcomponent(ProfileActivity profileActivity) {
         MockTestProfileComponent component = mockTestComponent.plus(new MockTestProfileModule(profileActivity));
         component.inject(profileActivity);
     }
 
     @Override
-    public void buildSettingsComponent(SettingsActivity settingsActivity) {
+    public void buildSettingsSubcomponent(SettingsActivity settingsActivity) {
         MockTestSettingsComponent component = mockTestComponent.plus(new MockTestSettingsModule(settingsActivity));
         component.inject(settingsActivity);
     }
