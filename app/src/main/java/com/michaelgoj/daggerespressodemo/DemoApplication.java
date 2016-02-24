@@ -26,11 +26,7 @@ public class DemoApplication extends Application {
         appComponent = DaggerAppComponent.builder().androidModule(new AndroidModule(this)).build();
     }
 
-    public ProfileInjector buildProfileSubcomponent(ProfileActivity profileActivity) {
-        return appComponent.plus(new ProfileModule(profileActivity));
-    }
-
-    public SettingsInjector buildSettingsSubcomponent(SettingsActivity settingsActivity) {
-        return appComponent.plus(new SettingsModule(settingsActivity));
+    public AppComponent component() {
+        return appComponent;
     }
 }
