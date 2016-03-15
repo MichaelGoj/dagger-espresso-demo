@@ -19,7 +19,9 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((DemoApplication) getApplication()).buildSettingsSubcomponent(this);
+        ((DemoApplication) getApplication())
+                .buildSettingsSubcomponent(this)
+                .inject(this);
         setTitle(settingsTitle);
     }
 }

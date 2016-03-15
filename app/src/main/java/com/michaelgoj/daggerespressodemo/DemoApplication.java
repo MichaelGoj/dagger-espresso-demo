@@ -6,10 +6,10 @@ import com.michaelgoj.daggerespressodemo.dagger.AndroidModule;
 import com.michaelgoj.daggerespressodemo.dagger.AppComponent;
 import com.michaelgoj.daggerespressodemo.dagger.DaggerAppComponent;
 import com.michaelgoj.daggerespressodemo.profile.ProfileActivity;
-import com.michaelgoj.daggerespressodemo.profile.dagger.ProfileComponent;
+import com.michaelgoj.daggerespressodemo.profile.dagger.ProfileInjector;
 import com.michaelgoj.daggerespressodemo.profile.dagger.ProfileModule;
 import com.michaelgoj.daggerespressodemo.settings.SettingsActivity;
-import com.michaelgoj.daggerespressodemo.settings.dagger.SettingsComponent;
+import com.michaelgoj.daggerespressodemo.settings.dagger.SettingsInjector;
 import com.michaelgoj.daggerespressodemo.settings.dagger.SettingsModule;
 
 public class DemoApplication extends Application {
@@ -26,13 +26,11 @@ public class DemoApplication extends Application {
         appComponent = DaggerAppComponent.builder().androidModule(new AndroidModule(this)).build();
     }
 
-    public void buildProfileSubcomponent(ProfileActivity profileActivity) {
-        ProfileComponent profileComponent = appComponent.plus(new ProfileModule(profileActivity));
-        profileComponent.inject(profileActivity);
+    public ProfileInjector buildProfileSubcomponent(ProfileActivity profileActivity) {
+        return appComponent.plus(new ProfileModule(profileActivity));
     }
 
-    public void buildSettingsSubcomponent(SettingsActivity settingsActivity) {
-        SettingsComponent settingsComponent = appComponent.plus(new SettingsModule(settingsActivity));
-        settingsComponent.inject(settingsActivity);
+    public SettingsInjector buildSettingsSubcomponent(SettingsActivity settingsActivity) {
+        return appComponent.plus(new SettingsModule(settingsActivity));
     }
 }

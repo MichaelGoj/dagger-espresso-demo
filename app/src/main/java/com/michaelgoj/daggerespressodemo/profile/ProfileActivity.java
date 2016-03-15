@@ -19,7 +19,9 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((DemoApplication) getApplication()).buildProfileSubcomponent(this);
+        ((DemoApplication) getApplication())
+                .buildProfileSubcomponent(this)
+                .inject(this);
         setTitle(profileTitle);
     }
 }
